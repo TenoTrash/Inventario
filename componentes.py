@@ -71,42 +71,42 @@ boton_listar.place(x=755, y=5,width=35, height=25) #Si no pongo tamaño, lo toma
 boton_salir = tk.Button(text="Salir", command=salir)
 boton_salir.place(x=755, y=45,width=35, height=25) #Si no pongo tamaño, lo toma por largo de texto
 
-etiqueta_codigo = tk.Label(text="Código:", fg="#ffffff",bg="#00ff00")
+etiqueta_codigo = tk.Label(text="Código:", fg="#000000",bg="#e0e0d1")
 etiqueta_codigo.place(x=5, y=5)
 caja_codigo = tk.Entry()
 caja_codigo.place(x=5, y=25, width=100, height=25)
 
-etiqueta_tipo = tk.Label(text="Tipo:", fg="#ffffff",bg="#00ff00")
+etiqueta_tipo = tk.Label(text="Tipo:", fg="#000000",bg="#e0e0d1")
 etiqueta_tipo.place(x=110, y=5)
 caja_tipo = tk.Entry()
 caja_tipo.place(x=110, y=25, width=100, height=25)
 
-etiqueta_subtipo = tk.Label(text="Subtipo:", fg="#ffffff",bg="#00ff00")
+etiqueta_subtipo = tk.Label(text="Subtipo:", fg="#000000",bg="#e0e0d1")
 etiqueta_subtipo.place(x=215, y=5)
 caja_subtipo = tk.Entry()
 caja_subtipo.place(x=215, y=25, width=100, height=25)
 
-etiqueta_valor = tk.Label(text="Valor:", fg="#ffffff",bg="#00ff00")
+etiqueta_valor = tk.Label(text="Valor:", fg="#000000",bg="#e0e0d1")
 etiqueta_valor.place(x=320, y=5)
 caja_valor = tk.Entry()
 caja_valor.place(x=320, y=25, width=100, height=25)
 
-etiqueta_cantidad = tk.Label(text="Cantidad:", fg="#ffffff",bg="#00ff00")
+etiqueta_cantidad = tk.Label(text="Cantidad:", fg="#000000",bg="#e0e0d1")
 etiqueta_cantidad.place(x=425, y=5)
 caja_cantidad = tk.Entry()
 caja_cantidad.place(x=425, y=25, width=100, height=25)
 
-etiqueta_gaveta = tk.Label(text="Gaveta:", fg="#ffffff",bg="#00ff00")
+etiqueta_gaveta = tk.Label(text="Gaveta:", fg="#000000",bg="#e0e0d1")
 etiqueta_gaveta.place(x=530, y=5)
 caja_gaveta = tk.Entry()
 caja_gaveta.place(x=530, y=25, width=100, height=25)
 
-etiqueta_desc = tk.Label(text="Descripción:", fg="#ffffff",bg="#00ff00")
+etiqueta_desc = tk.Label(text="Descripción:", fg="#000000",bg="#e0e0d1")
 etiqueta_desc.place(x=5, y=65)
 caja_desc = tk.Entry()
 caja_desc.place(x=5, y=85, width=205, height=25)
 
-etiqueta_notas = tk.Label(text="Notas:", fg="#ffffff",bg="#00ff00")
+etiqueta_notas = tk.Label(text="Notas:", fg="#000000",bg="#e0e0d1")
 etiqueta_notas.place(x=215, y=65)
 caja_notas = tk.Entry()
 caja_notas.place(x=215, y=85, width=415, height=25)
