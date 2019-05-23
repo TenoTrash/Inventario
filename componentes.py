@@ -25,11 +25,11 @@ cursor = conn.cursor()
 # ~  TEXT    TEXT  TEXT     TEXT   TEXT      TEXT    TEXT         TEXT
 # ~ # insertar un dato
 
-# cursor.execute("INSERT INTO inventario VALUES('LED1','Led','Difuso','Rojo','30','Trasp1','Led difuso rojo','Comprados en ELab Shop')")
-# cursor.execute("INSERT INTO inventario VALUES('LED2','Led','Difuso','Verde','30','Trasp1','Led difuso verde','Comprados en ELab Shop')")
-# cursor.execute("INSERT INTO inventario VALUES('LED3','Led','Difuso','Amarillo','30','Trasp1','Led difuso amarillo','Comprados en ELab Shop')")
-# cursor.execute("INSERT INTO inventario VALUES('RES220','Resistor','Comun','220 ohm','30','Trasp1','Resistor 220 ohm','Para proyecto de leds')")
-# conn.commit()
+# ~ cursor.execute("INSERT INTO inventario VALUES('LED1','Led','Difuso','Rojo','30','Trasp1','Led difuso rojo','Comprados en ELab Shop')")
+# ~ cursor.execute("INSERT INTO inventario VALUES('LED2','Led','Difuso','Verde','30','Trasp1','Led difuso verde','Comprados en ELab Shop')")
+# ~ cursor.execute("INSERT INTO inventario VALUES('LED3','Led','Difuso','Amarillo','30','Trasp1','Led difuso amarillo','Comprados en ELab Shop')")
+# ~ cursor.execute("INSERT INTO inventario VALUES('RES220','Resistor','Comun','220 ohm','30','Trasp1','Resistor 220 ohm','Para proyecto de leds')")
+# ~ conn.commit()
 
 def listar():
 	lista1.delete(0,tk.END)
