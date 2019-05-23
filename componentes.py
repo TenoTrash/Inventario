@@ -31,7 +31,13 @@ cursor = conn.cursor()
 # ~ cursor.execute("INSERT INTO inventario VALUES('RES220','Resistor','Comun','220 ohm','30','Trasp1','Resistor 220 ohm','Para proyecto de leds')")
 # ~ conn.commit()
 
+def cargar():
+	cursor.execute("SELECT * FROM inventario")
+	inventario = cursor.fetchall()
+
 def listar():
+	cursor.execute("SELECT * FROM inventario")
+	inventario = cursor.fetchall()
 	lista1.delete(0,tk.END)
 	for codigo, tipo, subtipo, valor, cantidad, gaveta, desc, notas in inventario:
 		# renglon=item[0]+" - "+item[1]+" - "+item[2]+" - "+item[3]+" - "+item[4]+" - "+item[5]+" - "+item[6]+" - "+item[7],
@@ -55,9 +61,6 @@ else:
 	print("Base creada con éxito")
 	conn.commit()
 
-cursor.execute("SELECT * FROM inventario")
-inventario = cursor.fetchall()
-
 # ventana principal
 componentes = tk.Tk()
 componentes.title("Inventario de componentes electrónicos")
@@ -66,6 +69,15 @@ componentes.config(width=800,height=500)
 # listado principal
 lista1 = tk.Listbox()
 lista1.place(x=5,y=120,width=790,height=375)
+
+# Crear una barra de deslizamiento con orientación vertical.
+scrollbar = tk.Scrollbar(lista1, orient=tk.VERTICAL)
+# Vincularla con la lista.
+lista1.listbox = tk.Listbox(lista1, yscrollcommand=scrollbar.set)
+
+scrollbar.config(command=lista1.listbox.yview)
+# Ubicarla a la derecha.
+scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
 
 boton_listar = tk.Button(text="Listar", command=listar)
 boton_listar.place(x=755, y=5,width=35, height=25) #Si no pongo tamaño, lo toma por largo de texto
@@ -117,3 +129,6 @@ boton_agregar = tk.Button(text="Agregar", command=agregar)
 boton_agregar.place(x=735, y=90,width=55, height=25) #Si no pongo tamaño, lo toma por largo de texto
 
 componentes.mainloop()
+
+# cierro la base de datos
+conn.close()
