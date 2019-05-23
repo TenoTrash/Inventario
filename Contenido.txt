@@ -1,0 +1,19 @@
+Base de datos y aplicacion de "Inventario de componentes"
+
+1 - Base de datos (campos):
+	Codigo (del componente)
+	Tipo (LED)
+	Subtipo (difuso, alto brillo, RGB, etc)
+	Valor (rojo, amarillo, ultravioleta, 220 ohm, 40pF)
+	Cantidad (20)
+	Gabeta (gabeta 1, 2, 33)
+	Descripcion (led comprado en ML)
+	Notas (este led viene bien para proyectos donde etc...)
+	
+2 - Aplicacion:
+	Alta
+	Baja
+	Modificacion
+	Listado
+	Busqueda
+	
