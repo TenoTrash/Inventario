@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
+# Para curso de Python en EducacionIT
+
 import sqlite3
 import tkinter as tk
 from tkinter import messagebox
