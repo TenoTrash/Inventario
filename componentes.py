@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Para curso de Python en EducacionIT
+# Falta agregar borrar y modificar
 
 import sqlite3
 import tkinter as tk
