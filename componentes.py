@@ -40,11 +40,14 @@ def listar():
 	cursor.execute("SELECT * FROM inventario")
 	inventario = cursor.fetchall()
 	lista1.delete(0,tk.END)
+	lista_codigo.delete(0,tk.END)
 	for codigo, tipo, subtipo, valor, cantidad, gaveta, desc, notas in inventario:
 		# renglon=item[0]+" - "+item[1]+" - "+item[2]+" - "+item[3]+" - "+item[4]+" - "+item[5]+" - "+item[6]+" - "+item[7],
 		# lista1.insert(tk.END,item[::])
-		renglon=codigo+" - "+tipo+" - "+subtipo+" - "+valor+" - "+cantidad+" - "+gaveta+" - "+desc+" - "+notas
+		renglon=tipo+' -- '+subtipo+' -- '+valor+' -- '+cantidad+' -- '+gaveta+' -- '+desc+' -- '+notas
+		# print(renglon)
 		lista1.insert(tk.END,renglon)
+		lista_codigo.insert(tk.END,codigo)
 
 def agregar():
 	codigo = caja_codigo.get()
@@ -77,26 +80,38 @@ else:
 # ventana principal
 componentes = tk.Tk()
 componentes.title("Inventario de componentes electrónicos")
-componentes.config(width=800,height=500)
+componentes.config(width=1000,height=500)
 
 # listado principal
 lista1 = tk.Listbox()
-lista1.place(x=5,y=120,width=790,height=375)
+lista1.place(x=135,y=120,width=860,height=375)
+
+# listado para columna por código
+lista_codigo = tk.Listbox()
+lista_codigo.place(x=5,y=120,width=125,height=375)
 
 # Crear una barra de deslizamiento con orientación vertical.
 scrollbar = tk.Scrollbar(lista1, orient=tk.VERTICAL)
+scrollbar_codigo = tk.Scrollbar(lista_codigo, orient=tk.VERTICAL)
+
 # Vincularla con la lista.
 lista1.listbox = tk.Listbox(lista1, yscrollcommand=scrollbar.set)
-
+lista_codigo.listbox = tk.Listbox(lista_codigo, yscrollcommand=scrollbar_codigo.set)
 scrollbar.config(command=lista1.listbox.yview)
+scrollbar_codigo.config(command=lista_codigo.listbox.yview)
+
 # Ubicarla a la derecha.
 scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
+scrollbar_codigo.pack(side=tk.RIGHT, fill=tk.Y)
+lista1.listbox = tk.Listbox(lista1, yscrollcommand=scrollbar.set)
+lista_codigo.listbox = tk.Listbox(lista_codigo, yscrollcommand=scrollbar_codigo.set)
 
-boton_listar = tk.Button(text="Listar", command=listar)
-boton_listar.place(x=755, y=5,width=35, height=25) #Si no pongo tamaño, lo toma por largo de texto
+# botones, etiquetas y cajas
+# boton_listar = tk.Button(text="Listar", command=listar)
+# boton_listar.place(x=955, y=5,width=35, height=25) #Si no pongo tamaño, lo toma por largo de texto
 
 boton_salir = tk.Button(text="Salir", command=salir)
-boton_salir.place(x=755, y=45,width=35, height=25) #Si no pongo tamaño, lo toma por largo de texto
+boton_salir.place(x=955, y=45,width=35, height=25) #Si no pongo tamaño, lo toma por largo de texto
 
 etiqueta_codigo = tk.Label(text="Código:", fg="#000000",bg="#e0e0d1")
 etiqueta_codigo.place(x=5, y=5)
@@ -139,8 +154,10 @@ caja_notas = tk.Entry()
 caja_notas.place(x=215, y=85, width=415, height=25)
 
 boton_agregar = tk.Button(text="Agregar", command=agregar)
-boton_agregar.place(x=735, y=90,width=55, height=25) #Si no pongo tamaño, lo toma por largo de texto
+boton_agregar.place(x=935, y=90,width=55, height=25) #Si no pongo tamaño, lo toma por largo de texto
 
+listar()
+# se ejecuta la ventana
 componentes.mainloop()
 
 # cierro la base de datos
