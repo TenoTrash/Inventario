@@ -56,14 +56,26 @@ def agregar():
 	valor = caja_valor.get()
 	cantidad = caja_cantidad.get()
 	gaveta = caja_gaveta.get()
+	cursor.execute("SELECT * FROM inventario")
+	inventario = cursor.fetchall()
+	if codigo=='':
+		messagebox.showerror(
+		title="Datos invalidos",
+		message="El código no puede estar vacio")
+		return()
+	for codigo, tipo, subtipo, valor, cantidad, gaveta, desc, notas in inventario:
+		if  codigo == caja_codigo.get():
+			messagebox.showerror(title="Error",message="El código ingresado ya existe")
+			return()
 	if codigo and tipo and subtipo and valor and cantidad and gaveta:
 		cursor.execute(	"INSERT INTO inventario VALUES (?,?,?,?,?,?,?,?)",(caja_codigo.get(),caja_tipo.get(),caja_subtipo.get(),caja_valor.get(),caja_cantidad.get(),caja_gaveta.get(),caja_desc.get(),caja_notas.get()))
+		caja_codigo.delete(0,tk.END)
 		conn.commit()
 		listar()
 	else:
 		messagebox.showerror(
 		title="Datos invalidos",
-		message="Los campos:\nCódig\nTipo\nSubtipo\nValor\nCantidad\nGaveta\nestán vacios")
+		message="Los campos:\n\nTipo\nSubtipo\nValor\nCantidad\nGaveta\n\nestán vacios")
 
 def salir():
 	exit()
