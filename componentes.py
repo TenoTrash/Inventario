@@ -47,8 +47,20 @@ def listar():
 		lista1.insert(tk.END,renglon)
 
 def agregar():
-	cursor.execute(	"INSERT INTO inventario VALUES (?,?,?,?,?,?,?,?)",(caja_codigo.get(),caja_tipo.get(),caja_subtipo.get(),caja_valor.get(),caja_cantidad.get(),caja_gaveta.get(),caja_desc.get(),caja_notas.get()))
-	conn.commit()
+	codigo = caja_codigo.get()
+	tipo = caja_tipo.get()
+	subtipo = caja_subtipo.get()
+	valor = caja_valor.get()
+	cantidad = caja_cantidad.get()
+	gaveta = caja_gaveta.get()
+	if codigo and tipo and subtipo and valor and cantidad and gaveta:
+		cursor.execute(	"INSERT INTO inventario VALUES (?,?,?,?,?,?,?,?)",(caja_codigo.get(),caja_tipo.get(),caja_subtipo.get(),caja_valor.get(),caja_cantidad.get(),caja_gaveta.get(),caja_desc.get(),caja_notas.get()))
+		conn.commit()
+		listar()
+	else:
+		messagebox.showerror(
+		title="Datos invalidos",
+		message="Los campos:\nCódig\nTipo\nSubtipo\nValor\nCantidad\nGaveta\nestán vacios")
 
 def salir():
 	exit()
