@@ -32,6 +32,43 @@ cursor = conn.cursor()
 # ~ cursor.execute("INSERT INTO inventario VALUES('RES220','Resistor','Comun','220 ohm','30','Trasp1','Resistor 220 ohm','Para proyecto de leds')")
 # ~ conn.commit()
 
+def agregar():
+	cod = caja_codigo.get()
+	tip = caja_tipo.get()
+	subt = caja_subtipo.get()
+	val = caja_valor.get()
+	cant = caja_cantidad.get()
+	gav = caja_gaveta.get()
+	cursor.execute("SELECT * FROM inventario")
+	inventario = cursor.fetchall()
+	if cod=='':
+		messagebox.showerror(
+		title="Datos invalidos",
+		message="El código no puede estar vacio")
+		return()
+	for codigo, tipo, subtipo, valor, cantidad, gaveta, desc, notas in inventario:
+		if  codigo == caja_codigo.get():
+			messagebox.showerror(title="Error",message="El código ingresado ya existe")
+			return()
+	if cod and tip and subt and val and cant and gav:
+		cursor.execute(	"INSERT INTO inventario VALUES (?,?,?,?,?,?,?,?)",(caja_codigo.get(),caja_tipo.get(),caja_subtipo.get(),caja_valor.get(),caja_cantidad.get(),caja_gaveta.get(),caja_desc.get(),caja_notas.get()))
+		caja_codigo.delete(0,tk.END)
+		conn.commit()
+		listar()
+	else:
+		messagebox.showerror(
+		title="Datos invalidos",
+		message="Los campos:\n\nTipo\nSubtipo\nValor\nCantidad\nGaveta\n\nestán vacios")
+
+def buscar():
+	try:
+		fila = lista_codigo.get(lista_codigo.curselection()[0])
+	except IndexError:
+		fila = "vacio"
+		messagebox.showerror(title="Seleccionar algo",message="Se debe seleccionar algun elemento")
+	etiqueta_seleccion = tk.Label(text=fila, fg="#000000",bg="#e0e0d1")
+	etiqueta_seleccion.place(x=900, y=5)
+
 def cargar():
 	cursor.execute("SELECT * FROM inventario")
 	inventario = cursor.fetchall()
@@ -48,34 +85,6 @@ def listar():
 		# print(renglon)
 		lista1.insert(tk.END,renglon)
 		lista_codigo.insert(tk.END,codigo)
-
-def agregar():
-	codigo = caja_codigo.get()
-	tipo = caja_tipo.get()
-	subtipo = caja_subtipo.get()
-	valor = caja_valor.get()
-	cantidad = caja_cantidad.get()
-	gaveta = caja_gaveta.get()
-	cursor.execute("SELECT * FROM inventario")
-	inventario = cursor.fetchall()
-	if codigo=='':
-		messagebox.showerror(
-		title="Datos invalidos",
-		message="El código no puede estar vacio")
-		return()
-	for codigo, tipo, subtipo, valor, cantidad, gaveta, desc, notas in inventario:
-		if  codigo == caja_codigo.get():
-			messagebox.showerror(title="Error",message="El código ingresado ya existe")
-			return()
-	if codigo and tipo and subtipo and valor and cantidad and gaveta:
-		cursor.execute(	"INSERT INTO inventario VALUES (?,?,?,?,?,?,?,?)",(caja_codigo.get(),caja_tipo.get(),caja_subtipo.get(),caja_valor.get(),caja_cantidad.get(),caja_gaveta.get(),caja_desc.get(),caja_notas.get()))
-		caja_codigo.delete(0,tk.END)
-		conn.commit()
-		listar()
-	else:
-		messagebox.showerror(
-		title="Datos invalidos",
-		message="Los campos:\n\nTipo\nSubtipo\nValor\nCantidad\nGaveta\n\nestán vacios")
 
 def salir():
 	exit()
@@ -124,6 +133,9 @@ lista_codigo.listbox = tk.Listbox(lista_codigo, yscrollcommand=scrollbar_codigo.
 
 boton_salir = tk.Button(text="Salir", command=salir)
 boton_salir.place(x=955, y=45,width=35, height=25) #Si no pongo tamaño, lo toma por largo de texto
+
+boton_buscar = tk.Button(text="Buscar", command=buscar)
+boton_buscar.place(x=955, y=5,width=35, height=25) #Si no pongo tamaño, lo toma por largo de texto
 
 etiqueta_codigo = tk.Label(text="Código:", fg="#000000",bg="#e0e0d1")
 etiqueta_codigo.place(x=5, y=5)
